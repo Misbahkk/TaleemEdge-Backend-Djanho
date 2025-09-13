@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
+ALLOWED_HOSTS = ["*",os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 
 
