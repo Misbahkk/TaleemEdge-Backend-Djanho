@@ -10,7 +10,7 @@ build/
 # Virtual environment
 venv/
 ENV/
-env/
+.env
 .venv/
 
 # Django stuff

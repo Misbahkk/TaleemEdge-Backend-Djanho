@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import dj_database_url
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5=his6s17*j=35(k$z_=bh#4ktkdb8p!g85)remhj7om$@lutr'
+# SECRET_KEY = 'django-insecure-5=his6s17*j=35(k$z_=bh#4ktkdb8p!g85)remhj7om$@lutr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
+SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 
 
 # Application definition
@@ -54,7 +57,7 @@ INSTALLED_APPS = [
     'hero_section',
 ]
 
-import os
+
 from dotenv import load_dotenv
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -62,6 +65,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     "corsheaders.middleware.CorsMiddleware",
@@ -96,6 +100,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'taleemEdge.wsgi.application'
 
+STORAGES = {
+    "default":{
+        "BACKEND":"django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles":{
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
