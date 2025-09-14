@@ -20,9 +20,7 @@ ENV/
 db.sqlite3
 db.sqlite3-journal
 
-# Media & Static (optional)
-# media/
-# staticfiles/
+
 
 # VS Code settings
 .vscode/
