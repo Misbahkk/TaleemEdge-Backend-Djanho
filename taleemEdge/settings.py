@@ -64,11 +64,11 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -76,10 +76,11 @@ MIDDLEWARE = [
 ]
 # Frontend
 CORS_ALLOWED_ORIGINS = [
-   "https://taleemedge.onrender.com", "http://localhost:3000", "http://127.0.0.1:3000",
+   "https://taleemedge.onrender.com"
 ]
 CORS_ALLOW_CREDENTIALS = True  # optional for dev
-CSRF_TRUSTED_ORIGINS = ["https://taleemedge.onrender.com","http://localhost:3000", "http://127.0.0.1:3000"]
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = ["https://taleemedge.onrender.com"]
 ROOT_URLCONF = 'taleemEdge.urls'
 
 TEMPLATES = [
