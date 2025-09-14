@@ -76,10 +76,10 @@ MIDDLEWARE = [
 ]
 # Frontend
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", "http://127.0.0.1:3000",
+   "https://taleemedge.onrender.com", "http://localhost:3000", "http://127.0.0.1:3000",
 ]
 CORS_ALLOW_CREDENTIALS = True  # optional for dev
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
+CSRF_TRUSTED_ORIGINS = ["https://taleemedge.onrender.com","http://localhost:3000", "http://127.0.0.1:3000"]
 ROOT_URLCONF = 'taleemEdge.urls'
 
 TEMPLATES = [
