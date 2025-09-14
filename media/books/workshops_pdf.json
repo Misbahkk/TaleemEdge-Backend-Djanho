@@ -1,0 +1,366 @@
+{
+  "info": {
+    "name": "Workshop Management APIs",
+    "description": "Complete API collection for Workshop Management System"
+  },
+  "requests": [
+    {
+      "name": "1. ADMIN - Create Workshop (with image/video)",
+      "method": "POST",
+      "url": "{{base_url}}/api/admin/workshops/",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}",
+        "Content-Type": "multipart/form-data"
+      },
+      "body": {
+        "mode": "formdata",
+        "formdata": [
+          {
+            "key": "title",
+            "value": "Python Django Workshop",
+            "type": "text"
+          },
+          {
+            "key": "instructor",
+            "value": "John Doe",
+            "type": "text"
+          },
+          {
+            "key": "description",
+            "value": "Learn Django framework from scratch",
+            "type": "text"
+          },
+          {
+            "key": "date",
+            "value": "2025-09-15",
+            "type": "text"
+          },
+          {
+            "key": "time",
+            "value": "10:00:00",
+            "type": "text"
+          },
+          {
+            "key": "duration",
+            "value": "3 hours",
+            "type": "text"
+          },
+          {
+            "key": "capacity",
+            "value": "50",
+            "type": "text"
+          },
+          {
+            "key": "level",
+            "value": "intermediate",
+            "type": "text"
+          },
+          {
+            "key": "category",
+            "value": "Web Development",
+            "type": "text"
+          },
+          {
+            "key": "location",
+            "value": "online",
+            "type": "text"
+          },
+          {
+            "key": "price",
+            "value": "99.99",
+            "type": "text"
+          },
+          {
+            "key": "status",
+            "value": "upcoming",
+            "type": "text"
+          },
+          {
+            "key": "main_image",
+            "type": "file",
+            "description": "Upload workshop image"
+          },
+          {
+            "key": "video",
+            "type": "file",
+            "description": "Upload workshop video (optional)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "2. ADMIN - Get My Workshops (with search)",
+      "method": "GET",
+      "url": "{{base_url}}/api/admin/workshops/?search=python&status=upcoming&level=intermediate",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}"
+      }
+    },
+    {
+      "name": "3. ADMIN - Get Workshop Detail",
+      "method": "GET",
+      "url": "{{base_url}}/api/admin/workshops/{{workshop_id}}/",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}"
+      }
+    },
+    {
+      "name": "4. ADMIN - Update Workshop (with new image)",
+      "method": "PUT",
+      "url": "{{base_url}}/api/admin/workshops/{{workshop_id}}/",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}",
+        "Content-Type": "multipart/form-data"
+      },
+      "body": {
+        "mode": "formdata",
+        "formdata": [
+          {
+            "key": "title",
+            "value": "Advanced Python Django Workshop",
+            "type": "text"
+          },
+          {
+            "key": "instructor",
+            "value": "John Doe",
+            "type": "text"
+          },
+          {
+            "key": "description",
+            "value": "Advanced Django concepts and best practices",
+            "type": "text"
+          },
+          {
+            "key": "date",
+            "value": "2025-09-15",
+            "type": "text"
+          },
+          {
+            "key": "time",
+            "value": "10:00:00",
+            "type": "text"
+          },
+          {
+            "key": "duration",
+            "value": "4 hours",
+            "type": "text"
+          },
+          {
+            "key": "capacity",
+            "value": "30",
+            "type": "text"
+          },
+          {
+            "key": "level",
+            "value": "advanced",
+            "type": "text"
+          },
+          {
+            "key": "category",
+            "value": "Web Development",
+            "type": "text"
+          },
+          {
+            "key": "location",
+            "value": "online",
+            "type": "text"
+          },
+          {
+            "key": "price",
+            "value": "149.99",
+            "type": "text"
+          },
+          {
+            "key": "main_image",
+            "type": "file",
+            "description": "Upload new workshop image"
+          }
+        ]
+      }
+    },
+    {
+      "name": "5. ADMIN - Delete Workshop",
+      "method": "DELETE",
+      "url": "{{base_url}}/api/admin/workshops/{{workshop_id}}/",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}"
+      }
+    },
+    {
+      "name": "6. ADMIN - Dashboard Stats",
+      "method": "GET",
+      "url": "{{base_url}}/api/admin/dashboard/stats/",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}"
+      }
+    },
+    {
+      "name": "7. ADMIN - Workshop Enrollments Detail",
+      "method": "GET",
+      "url": "{{base_url}}/api/admin/workshops/{{workshop_id}}/enrollments/",
+      "headers": {
+        "Authorization": "Bearer {{admin_token}}"
+      }
+    },
+    {
+      "name": "8. STUDENT - Get All Workshops (with filters)",
+      "method": "GET",
+      "url": "{{base_url}}/api/workshops/?search=django&category=Web Development&level=intermediate&status=upcoming",
+      "headers": {
+        "Authorization": "Bearer {{student_token}}"
+      }
+    },
+    {
+      "name": "9. STUDENT - Get Workshop Detail",
+      "method": "GET",
+      "url": "{{base_url}}/api/workshops/{{workshop_id}}/",
+      "headers": {
+        "Authorization": "Bearer {{student_token}}"
+      }
+    },
+    {
+      "name": "10. STUDENT - Enroll in Workshop",
+      "method": "POST",
+      "url": "{{base_url}}/api/workshops/{{workshop_id}}/enroll/",
+      "headers": {
+        "Authorization": "Bearer {{student_token}}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "mode": "raw",
+        "raw": "{}"
+      }
+    },
+    {
+      "name": "11. STUDENT - Unenroll from Workshop",
+      "method": "DELETE",
+      "url": "{{base_url}}/api/workshops/{{workshop_id}}/unenroll/",
+      "headers": {
+        "Authorization": "Bearer {{student_token}}"
+      }
+    },
+    {
+      "name": "12. STUDENT - Get My Enrolled Workshops",
+      "method": "GET",
+      "url": "{{base_url}}/api/student/enrolled-workshops/?status=upcoming&search=python",
+      "headers": {
+        "Authorization": "Bearer {{student_token}}"
+      }
+    },
+    {
+      "name": "13. STUDENT - Dashboard Stats",
+      "method": "GET",
+      "url": "{{base_url}}/api/student/dashboard/",
+      "headers": {
+        "Authorization": "Bearer {{student_token}}"
+      }
+    },
+    {
+      "name": "14. Get Workshop Categories",
+      "method": "GET",
+      "url": "{{base_url}}/api/workshops/categories/",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  ],
+  "variables": {
+    "base_url": "http://localhost:8000",
+    "admin_token": "your_admin_jwt_token_here",
+    "student_token": "your_student_jwt_token_here",
+    "workshop_id": "1"
+  },
+  "sample_responses": {
+    "admin_workshop_create_success": {
+      "id": 1,
+      "title": "Python Django Workshop",
+      "instructor": "John Doe",
+      "description": "Learn Django framework from scratch",
+      "date": "2025-09-15",
+      "time": "10:00:00",
+      "duration": "3 hours",
+      "capacity": 50,
+      "level": "intermediate",
+      "category": "Web Development",
+      "location": "online",
+      "price": "99.99",
+      "status": "upcoming",
+      "enrolled_count": 0,
+      "main_image": "http://localhost:8000/media/workshop_images/django_workshop.jpg",
+      "video": "http://localhost:8000/media/workshop_videos/intro_video.mp4",
+      "created_by": 1,
+      "created_by_name": "Admin User",
+      "enrolled_students_count": 0,
+      "main_image_url": "http://localhost:8000/media/workshop_images/django_workshop.jpg",
+      "video_url": "http://localhost:8000/media/workshop_videos/intro_video.mp4",
+      "created_at": "2025-08-23T10:00:00Z",
+      "updated_at": "2025-08-23T10:00:00Z"
+    },
+    "admin_dashboard_stats": {
+      "total_workshops": 5,
+      "upcoming_workshops": 3,
+      "ongoing_workshops": 1,
+      "completed_workshops": 1,
+      "total_enrollments": 25,
+      "recent_workshops": [
+        {
+          "id": 1,
+          "title": "Python Django Workshop",
+          "enrolled_students_count": 15,
+          "status": "upcoming"
+        }
+      ]
+    },
+    "student_workshop_list": {
+      "count": 10,
+      "next": "http://localhost:8000/api/workshops/?page=2",
+      "previous": null,
+      "results": [
+        {
+          "id": 1,
+          "title": "Python Django Workshop",
+          "instructor": "John Doe",
+          "date": "2025-09-15",
+          "time": "10:00:00",
+          "level": "intermediate",
+          "category": "Web Development",
+          "price": "99.99",
+          "status": "upcoming",
+          "enrolled_students_count": 15,
+          "is_enrolled": true,
+          "main_image_url": "http://localhost:8000/media/workshop_images/django_workshop.jpg"
+        }
+      ]
+    },
+    "student_enrolled_workshops": {
+      "enrolled_workshops": [
+        {
+          "id": 1,
+          "workshop": {
+            "id": 1,
+            "title": "Python Django Workshop",
+            "instructor": "John Doe",
+            "date": "2025-09-15",
+            "status": "upcoming"
+          },
+          "workshop_title": "Python Django Workshop",
+          "workshop_date": "2025-09-15",
+          "workshop_time": "10:00:00",
+          "workshop_instructor": "John Doe",
+          "workshop_status": "upcoming",
+          "enrolled_at": "2025-08-23T10:30:00Z"
+        }
+      ],
+      "total_count": 3
+    },
+    "enrollment_success": {
+      "message": "Successfully enrolled in workshop",
+      "enrollment": {
+        "id": 1,
+        "workshop_title": "Python Django Workshop",
+        "workshop_date": "2025-09-15",
+        "enrolled_at": "2025-08-23T10:30:00Z"
+      }
+    }
+  }
+}
